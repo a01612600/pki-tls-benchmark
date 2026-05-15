@@ -1,0 +1,31 @@
+Hardware:
+
+    Hardware Overview:
+
+      Model Name: MacBook Air
+      Model Identifier: Mac16,12
+      Model Number: Z1CY000K2E/A
+      Chip: Apple M4
+      Total Number of Cores: 10 (4 performance and 6 efficiency)
+      Memory: 16 GB
+      System Firmware Version: 13822.61.10
+      OS Loader Version: 11881.140.96
+      Serial Number (system): H36YYHPXG2
+      Hardware UUID: 2DCCC1A7-DE7A-5622-B968-DD20A8C76A07
+      Provisioning UDID: 00008132-001828A91A0B801C
+      Activation Lock Status: Enabled
+
+ProductName:		macOS
+ProductVersion:		15.7.3
+BuildVersion:		24G419
+OpenSSL 3.6.0 1 Oct 2025 (Library: OpenSSL 3.6.0 1 Oct 2025)
+built on: Wed Oct  1 12:11:48 2025 UTC
+platform: darwin64-arm64-cc
+options:  bn(64,64)
+compiler: clang -fPIC -arch arm64 -O3 -Wall -DL_ENDIAN -DOPENSSL_PIC -D_REENTRANT -DOPENSSL_BUILDING_OPENSSL -DNDEBUG
+OPENSSLDIR: "/opt/homebrew/etc/openssl@3"
+ENGINESDIR: "/opt/homebrew/Cellar/openssl@3/3.6.0/lib/engines-3"
+MODULESDIR: "/opt/homebrew/Cellar/openssl@3/3.6.0/lib/ossl-modules"
+Seeding source: os-specific
+CPUINFO: OPENSSL_armcap=0x987d
+Python 3.14.0

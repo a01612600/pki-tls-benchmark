@@ -1,138 +1,217 @@
-# PKI clásica en TLS — costo de verificación de certificados
+# Classical PKI in TLS — Certificate Verification Cost Analysis
 
-Proyecto de investigación enfocado en evaluar empíricamente el costo computacional de la verificación de certificados digitales en TLS 1.3, comparando distintos algoritmos criptográficos clásicos y diferentes profundidades de cadena X.509.
-
----
-
-# Objetivo
-
-Analizar cómo cambia la latencia del handshake TLS conforme aumenta:
-
-- el tamaño y tipo del algoritmo criptográfico,
-- la profundidad de la cadena de certificados,
-- y el tamaño total de los certificados intercambiados.
-
-El proyecto compara algoritmos RSA y ECDSA bajo condiciones controladas y mediciones repetidas.
+Research project focused on empirically evaluating the computational cost of digital certificate verification in TLS 1.3, comparing different classical cryptographic algorithms and X.509 certificate chain depths.
 
 ---
 
-# Configuración experimental
+# Objective
 
-## Algoritmos evaluados
+Analyze how TLS handshake latency changes as:
+
+- cryptographic algorithm size and type increase,
+- certificate chain depth increases,
+- total exchanged certificate size increases.
+
+The project compares RSA and ECDSA under controlled experimental conditions and repeated measurements.
+
+---
+
+# Experimental Setup
+
+## Evaluated Algorithms
 
 - RSA-2048
 - RSA-4096
 - ECDSA P-256 (`ec256`)
 - ECDSA P-384 (`ec384`)
 
-## Profundidad de cadena
+## Certificate Chain Depth
 
-Se evaluaron cadenas X.509 con profundidad:
+X.509 chains with the following depths were evaluated:
 
-- 1
-- 2
-- 3
-- 4 certificados
+- 1 certificate
+- 2 certificates
+- 3 certificates
+- 4 certificates
 
-## Total de condiciones
+## Total Experimental Conditions
 
-- 16 combinaciones experimentales  
-  `(4 algoritmos × 4 profundidades)`
+- 16 experimental combinations  
+  `(4 algorithms × 4 depths)`
 
-## Mediciones
+## Measurements
 
-- ~650 handshakes por condición
-- 10,400 observaciones totales
+- ~650 handshakes per condition
+- 10,400 total observations
 
-## Configuración TLS
+## TLS Configuration
 
 - TLS 1.3
-- Session resumption deshabilitado (`-no_ticket`)
-- Servidor TLS local usando OpenSSL
+- Session resumption disabled (`-no_ticket`)
+- Local TLS server using OpenSSL
 
 ---
 
-# Resultados obtenidos
+# Results
 
-Durante las semanas 3–5 se completó la recolección y validación del dataset experimental.
+During Weeks 3–6, the complete dataset collection, validation, and statistical analysis pipeline was finalized.
 
-Se logró:
+The project successfully:
 
-- generar cadenas de certificados automáticamente,
-- ejecutar handshakes TLS repetidos,
-- medir latencia del handshake,
-- registrar tamaño de certificados,
-- automatizar corridas experimentales,
-- generar análisis estadísticos y visualizaciones,
-- validar consistencia del dataset.
+- generated certificate chains automatically,
+- executed repeated TLS handshakes,
+- measured handshake latency,
+- recorded certificate sizes,
+- automated experimental runs,
+- generated statistical visualizations,
+- performed normality testing,
+- executed Mann–Whitney U tests,
+- fitted linear regression models,
+- validated dataset consistency.
 
 ---
 
-# Calidad de datos
+# Data Quality
 
-Se realizó una validación preliminar del dataset.
+## Validation Checks
 
-## Verificaciones realizadas
+- Missing values: `0`
+- Duplicate rows: `0`
+- All conditions completed successfully
+- Balanced observation distribution
 
-- Valores nulos: `0`
-- Duplicados: `0`
-- Todas las condiciones completas
-- Distribución balanceada de observaciones
+## Coefficient of Variation (CV)
 
-## Coeficiente de variación (CV)
-
-La mayoría de las condiciones presentaron:
+Most experimental conditions presented:
 
 - `CV < 20%`
 
-Algunas condiciones con RSA-4096 y ciertas profundidades mostraron mayor variabilidad, la cual quedó documentada mediante:
+Some RSA-4096 configurations exhibited higher variability, documented using:
 
 - boxplots,
-- análisis de outliers,
-- heatmaps de CV,
-- gráficas con barras de error.
+- outlier analysis,
+- scatter plots,
+- error bars,
+- statistical summary tables.
 
 ---
 
-# Integridad del dataset
+# Statistical Analysis
 
-El dataset final fue verificado mediante hash SHA-256.
+The following analyses were performed:
+
+- Shapiro–Wilk normality test
+- Mann–Whitney U test
+- descriptive statistics,
+- linear regression,
+- certificate size analysis,
+- latency vs depth visualization,
+- latency vs certificate size visualization.
+
+---
+
+# Dataset Integrity
+
+The final dataset was verified using SHA-256 hashing.
 
 ```text
 5286440e0078ac054802b4fb3cb204941086f8501a2d9c4333f9fd8bd3575604
+```
 
+---
 
-🖥️ Entorno experimental
+# Experimental Environment
 
-El proyecto se ejecutó en macOS usando:
+The project was executed on macOS using:
 
-Python 3.14.4
-OpenSSL 3.6.2
-entorno virtual .venv
+- Python 3.14.4
+- OpenSSL 3.6.2
+- local `.venv` virtual environment
 
-Para evitar conflictos con dependencias del sistema se utilizó:
+To avoid system dependency conflicts, the project used:
 
-Homebrew
-entorno virtual local de Python
+- Homebrew
+- isolated Python virtual environments
 
-La información completa del entorno se encuentra en:
+Complete environment information is available in:
 
-    analysis/system_info.txt
+```text
+analysis/system_info.txt
+```
 
-Incluye:
+Including:
 
-CPU
-memoria RAM
-sistema operativo
-versión de OpenSSL
-versión de Python
+- CPU
+- RAM
+- operating system
+- OpenSSL version
+- Python version
 
-📁 Dataset final
+---
 
-Ubicación:
+# Final Dataset
 
-    data/final_dataset.csv
+Location:
 
-Estructura del dataset:
+```text
+data/final_dataset.csv
+```
 
-    replica_id, algo, depth, run_id, handshake_ms, timestamp, cert_bytes, session_resumption
+## Dataset Structure
+
+```text
+replica_id
+algo
+depth
+run_id
+handshake_ms
+timestamp
+cert_bytes
+session_resumption
+```
+
+---
+
+# Reproducibility
+
+## Clone Repository
+
+```bash
+git clone <repo-url>
+cd pki-tls-benchmark
+```
+
+## Create Virtual Environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+## Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Run Dataset Collection
+
+```bash
+python scripts/collect_week5.py
+```
+
+## Run Statistical Analysis
+
+```bash
+python analysis/week6_summary.py
+python analysis/week6_normality.py
+python analysis/week6_mannwhitney.py
+python analysis/week6_regression.py
+python analysis/week6_scatter.py
+```
+
+---
+
+# License
+
+MIT License

@@ -177,7 +177,7 @@ session_resumption
 ## Clone Repository
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/a01612600/pki-tls-benchmark.git
 cd pki-tls-benchmark
 ```
 

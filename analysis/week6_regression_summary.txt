@@ -1,0 +1,28 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:           handshake_ms   R-squared:                       0.915
+Model:                            OLS   Adj. R-squared:                  0.915
+Method:                 Least Squares   F-statistic:                 2.798e+04
+Date:                Sat, 16 May 2026   Prob (F-statistic):               0.00
+Time:                        16:11:02   Log-Likelihood:                -117.73
+No. Observations:               10400   AIC:                             245.5
+Df Residuals:                   10395   BIC:                             281.7
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+======================================================================================
+                         coef    std err          t      P>|t|      [0.025      0.975]
+--------------------------------------------------------------------------------------
+Intercept              0.3206      0.007     44.520      0.000       0.306       0.335
+C(algo)[T.ec384]       0.6859      0.007    101.031      0.000       0.673       0.699
+C(algo)[T.rsa2048]     0.2109      0.007     31.064      0.000       0.198       0.224
+C(algo)[T.rsa4096]     2.0508      0.007    302.066      0.000       2.037       2.064
+depth                  0.0790      0.002     36.787      0.000       0.075       0.083
+==============================================================================
+Omnibus:                    20489.329   Durbin-Watson:                   0.882
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):         67060091.036
+Skew:                          15.703   Prob(JB):                         0.00
+Kurtosis:                     395.132   Cond. No.                         13.2
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.

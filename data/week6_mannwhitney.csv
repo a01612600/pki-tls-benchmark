@@ -1,0 +1,5 @@
+algo_1,algo_2,u_statistic,pvalue,significant
+ec256,rsa2048,152725.5,0.0,True
+ec384,rsa4096,7470.0,0.0,True
+ec256,ec384,9399.0,0.0,True
+rsa2048,rsa4096,0.0,0.0,True

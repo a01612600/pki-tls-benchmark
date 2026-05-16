@@ -1,0 +1,23 @@
+# virtual env
+venv/
+.venv/
+
+# python cache
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# jupyter
+.ipynb_checkpoints/
+
+# vscode
+.vscode/
+
+# generated figures
+*.png
+*.pdf
+
+# temporary files
+*.tmp
